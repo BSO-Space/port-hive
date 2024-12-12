@@ -1,23 +1,19 @@
 // src/app/models/Port.ts
-import mongoose, { Document, Model, Schema } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
 
 interface IPort extends Document {
-  port: number;
-  application: string;
-  purpose: string;
-  addedBy: string;
-  status: 'active' | 'available';
+    port: number;
+    status: string;
+    purpose: string;
+    addedBy: string;
 }
 
-const portSchema = new Schema<IPort>({
-  port: { type: Number, required: true, unique: true }, // Enforce unique port numbers
-  application: { type: String, required: true },
-  purpose: { type: String, required: true },
-  addedBy: { type: String, required: true },
-  status: { type: String, enum: ['active', 'available'], default: 'active' },
+const PortSchema = new Schema<IPort>({
+    port: { type: Number, required: true, unique: true },
+    status: { type: String, required: true },
+    purpose: { type: String, required: true },
+    addedBy: { type: String, default: 'System' },
 });
 
-const Port: Model<IPort> = mongoose.models.Port || mongoose.model<IPort>('Port', portSchema);
-
+const Port = mongoose.models.Port || mongoose.model<IPort>('Port', PortSchema);
 export default Port;
-export type { IPort };

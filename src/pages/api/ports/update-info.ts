@@ -1,7 +1,6 @@
-// src/pages/api/ports/update-info.ts
 import type { NextApiRequest, NextApiResponse } from 'next/types';
-import dbConnect from '../../../app/mongodb';
-import Port from '../../../app/models/Port';
+import dbConnect from '@/app/mongodb';
+import Port from '@/app/models/Port';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
